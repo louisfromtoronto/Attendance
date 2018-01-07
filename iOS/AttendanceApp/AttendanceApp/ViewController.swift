@@ -98,6 +98,12 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
+extension ViewController: DataPassable {
+    func pass(data: Any) {
+        print("")
+    }
+}
+
 extension CLBeacon {
     var proximityString: String {
         switch self.proximity {
@@ -107,5 +113,9 @@ extension CLBeacon {
         case .far: return "far"
         }
     }
+}
+
+protocol DataPassable {
+    func pass(data: Any);
 }
 

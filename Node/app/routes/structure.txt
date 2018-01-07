@@ -1,0 +1,38 @@
+student_routes.js
+    app.post('/student, ())
+    app.get('/student/:id, ())
+    app.update('/student/:id, ())
+    app.delete('/student/:id, ())
+
+beacon_routes.js
+    app.post('/beacon, ())
+    app.get('/beacon/:id, ())
+    app.update('/beacon/:id, ())
+    app.delete('/beacon/:id, ())
+    app.get('/beacon/:uuid:/:major/:minor')
+
+class_routes.js
+    app.post('/classes, ())
+    app.post('/classes/addStudent/' ())
+    app.get('/classes, ())
+    app.delete('/classes, ())
+    app.delete('/classes/deleteStudent, ())
+
+
+
+
+    class = 
+    {
+        "instructor" : 
+        "students" : ["StuIDA", "StuIDB"]
+        "beacon" : {
+                    "_id": "5a5079cca16f5910d3c029ff",
+                    "UUID": "xyxz",
+                    "major": "2",
+                    "minor": "3",
+                    "name": "Classroom",
+                    "class": "ELEE0000"
+                    }
+    }
+
+account_routes.js

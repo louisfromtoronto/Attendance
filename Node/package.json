@@ -1,0 +1,16 @@
+{
+  "name": "attendance",
+  "version": "1.0.0",
+  "description": "Server software for the Attendance app.",
+  "main": "server,js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Louis Mark",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.34"
+  }
+}

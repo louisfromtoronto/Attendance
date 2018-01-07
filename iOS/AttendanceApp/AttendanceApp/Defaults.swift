@@ -10,8 +10,8 @@ import Foundation
 import CoreLocation
 
 struct Defaults {
-    static let uuid: UUID = UUID(uuidString: "0000")!
+    static let uuid: UUID = UUID(uuidString: "")!
     static let majorValue = 0
     static let minorValue = 0
-    static let name: String = "Name"
+    static let name: String = "GemTot iOS"
 }

@@ -16,6 +16,11 @@
 		254EABA91FFC908A00C37D1B /* AttendanceAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254EABA81FFC908A00C37D1B /* AttendanceAppUITests.swift */; };
 		254EABB71FFC92C600C37D1B /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254EABB61FFC92C600C37D1B /* Object.swift */; };
 		254EABB91FFC973300C37D1B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254EABB81FFC973300C37D1B /* Defaults.swift */; };
+		2595FFB32000B69E005A10FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2595FFB22000B69E005A10FD /* ProfileViewController.swift */; };
+		2595FFB52000BBF5005A10FD /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2595FFB42000BBF5005A10FD /* RequestHandler.swift */; };
+		2595FFB72000BD9A005A10FD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2595FFB62000BD9A005A10FD /* Config.swift */; };
+		2595FFB92000EAE9005A10FD /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2595FFB82000EAE9005A10FD /* AccountsViewController.swift */; };
+		2595FFBB20015373005A10FD /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2595FFBA20015373005A10FD /* Account.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		254EABAA1FFC908A00C37D1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		254EABB61FFC92C600C37D1B /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		254EABB81FFC973300C37D1B /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		2595FFB22000B69E005A10FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2595FFB42000BBF5005A10FD /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		2595FFB62000BD9A005A10FD /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2595FFB82000EAE9005A10FD /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		2595FFBA20015373005A10FD /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,11 @@
 			children = (
 				254EAB881FFC908A00C37D1B /* AppDelegate.swift */,
 				254EAB8A1FFC908A00C37D1B /* ViewController.swift */,
+				2595FFB22000B69E005A10FD /* ProfileViewController.swift */,
+				2595FFB82000EAE9005A10FD /* AccountsViewController.swift */,
+				2595FFBA20015373005A10FD /* Account.swift */,
+				2595FFB42000BBF5005A10FD /* RequestHandler.swift */,
+				2595FFB62000BD9A005A10FD /* Config.swift */,
 				254EABB61FFC92C600C37D1B /* Object.swift */,
 				254EABB81FFC973300C37D1B /* Defaults.swift */,
 				254EAB8C1FFC908A00C37D1B /* Main.storyboard */,
@@ -267,7 +282,12 @@
 			files = (
 				254EAB8B1FFC908A00C37D1B /* ViewController.swift in Sources */,
 				254EABB91FFC973300C37D1B /* Defaults.swift in Sources */,
+				2595FFB52000BBF5005A10FD /* RequestHandler.swift in Sources */,
+				2595FFBB20015373005A10FD /* Account.swift in Sources */,
+				2595FFB72000BD9A005A10FD /* Config.swift in Sources */,
+				2595FFB32000B69E005A10FD /* ProfileViewController.swift in Sources */,
 				254EABB71FFC92C600C37D1B /* Object.swift in Sources */,
+				2595FFB92000EAE9005A10FD /* AccountsViewController.swift in Sources */,
 				254EAB891FFC908A00C37D1B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
