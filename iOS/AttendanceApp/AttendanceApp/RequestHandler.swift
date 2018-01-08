@@ -9,6 +9,10 @@
 import Foundation
 
 class RequestHandler {
+    
+    weak var getAllAccountsDelegate: GetAllAccountsDelegate?;
+    
+    
     static func createStudent(withFirstName firstName: String,
                                              lastName: String,
                                             studentID: String,
@@ -36,9 +40,9 @@ class RequestHandler {
     }
     
     // Retrieves all accounts from the Database, and returns them as an
-    // array of dictionaries.
-    
-    static func getAllAccounts() {
+    // array of dictionaries. You must set a value for getAllAccountsDelegate.
+    func getAllAccounts() {
+        
         var request = URLRequest(url: URL(string: (urls.studentsPath + "findAll/"))!);
         request.httpMethod = "GET";
         
@@ -56,12 +60,12 @@ class RequestHandler {
             do {
                 resultArray  = try JSONSerialization.jsonObject(with: data!, options: []) as! NSArray;
                 print(String(resultArray.count) + " items in resultArray");
-                AccountsViewController.accounts = resultArray;
                 
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil);
+                if (self.getAllAccountsDelegate != nil) {
+                    self.getAllAccountsDelegate?.requestHandlerDidGetAllAccounts(sender: self, results: resultArray)
+                } else {
+                    print("You must implement the delegate protocol and set a value for RequestHandler.getAllAcountsDelegate");
                 }
-                
             } catch {
                 print("Error converting JSON to array of dictionaries");
             }
@@ -70,3 +74,6 @@ class RequestHandler {
     }
 }
 
+protocol GetAllAccountsDelegate: class {
+    func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: NSArray);
+}

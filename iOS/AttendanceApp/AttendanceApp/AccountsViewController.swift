@@ -11,18 +11,17 @@ import UIKit
 class AccountsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    static var accounts: NSArray = [];
+    var accounts: NSArray = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView),
-                                                         name: NSNotification.Name(rawValue: "load"),
-                                                       object: nil);
-        
+
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
-        RequestHandler.getAllAccounts();
+        
+        let requestHander = RequestHandler();
+        requestHander.getAllAccountsDelegate = self;
+        requestHander.getAllAccounts();
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,28 +40,21 @@ class AccountsViewController: UIViewController {
     }
     */
     
-    @objc func refreshTableView() {
-        self.tableView.reloadData();
-    }
-
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil);
     }
 }
 
 extension AccountsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(AccountsViewController.accounts.count);
-        return AccountsViewController.accounts.count;
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AccountsViewControllerCell;
         
-        //let account = self.accounts[indexPath.row];
-        //print(account);
-        
-        let resultDictionary = AccountsViewController.accounts[indexPath.row] as! NSDictionary;
+        let resultDictionary = self.accounts[indexPath.row] as! NSDictionary;
         
         cell.nameLabel.text = resultDictionary.value(forKey: "firstName") as? String;
         cell.studentNumberLabel.text = resultDictionary.value(forKey: "studentID") as? String;
@@ -78,6 +70,16 @@ extension AccountsViewController: UITableViewDelegate {
         print("");
     }
     
+}
+
+extension AccountsViewController: GetAllAccountsDelegate {
+    func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: NSArray) {
+        self.accounts = results;
+    
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.tableView.reloadData()
+        })
+    }
 }
 
 class AccountsViewControllerCell: UITableViewCell {

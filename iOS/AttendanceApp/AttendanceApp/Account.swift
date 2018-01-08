@@ -25,37 +25,8 @@ extension Data {
         do {
             let foundationObject = try JSONSerialization.jsonObject(with: self, options: []);
             return foundationObject;
-        } catch {
-            throw AccountError.JSONSerialization;
-        }
+        } 
         
     }
 }
 
-extension NSDictionary {
-    func toAccount() throws -> Account {
-        var firstName: String;
-        var lastName: String;
-        var studentNumber: String;
-        var accountType: AccountTypes;
-        do {
-            firstName = self.value(forKey: "firstName") as? String;
-            lastName = self.value(forKey: "lastName") as! String;
-            studentNumber = self.value(forKey: "studentID") as! String;
-            let accountTypeString = self.value(forKey: "accountType") as! String;
-            switch accountTypeString {
-            case "teacher":
-                accountType = .teacher
-            default:
-                accountType = .student
-            }
-        } catch {
-            
-        }
-        
-    }
-}
-
-enum AccountError: Error {
-    case JSONSerialization
-}
