@@ -11,3 +11,4 @@ import Foundation
 struct urls {
     static let studentsPath = "http://localhost:8000/students/"
 }
+
