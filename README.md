@@ -31,8 +31,8 @@ Open ```server.js```. The ```port``` variable defines which port the Express
 server will be running on. I've set it to port 8000, but you can change it
 to what you like, if necessary.
 
-Open the ```config``` file and then ```db.js```. This code defines where your
-MongoD database will be running. Put the appropriate url for your database in
+Open the ```/config``` directory. Create a file named ```db.js```. This JavaScript document defines where your
+MongoD database will be running. Paste the following code into ```db.js``` and put the url for your database in
 the quotation marks. I recommend creating and running the database on mlab, 
 for most expedient testing.
 ```
