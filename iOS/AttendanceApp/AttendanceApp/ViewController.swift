@@ -68,6 +68,7 @@ extension ViewController: AccountSwitchable {
 }
 
 extension ViewController: BeaconManagerProtocol {
+    
     func beaconWasMatched(_ beacon: Object) {
         print("match");
         refreshBeaconView(beacon);
