@@ -9,19 +9,23 @@
 import UIKit
 
 class AccountsViewController: UIViewController {
+    
+    var accountSwitchableDelegate: AccountSwitchable?
 
     @IBOutlet weak var tableView: UITableView!
-    var accounts: NSArray = [];
+    var accounts: [Account] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.dataSource = self;
         self.tableView.delegate = self;
         
         let requestHander = RequestHandler();
         requestHander.getAllAccountsDelegate = self;
         requestHander.getAllAccounts();
+        
+        self.tableView.dataSource = self;
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +44,7 @@ class AccountsViewController: UIViewController {
     }
     */
     
+    
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil);
     }
@@ -48,17 +53,17 @@ class AccountsViewController: UIViewController {
 extension AccountsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.accounts.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AccountsViewControllerCell;
         
-        let resultDictionary = self.accounts[indexPath.row] as! NSDictionary;
-        
-        cell.nameLabel.text = resultDictionary.value(forKey: "firstName") as? String;
-        cell.studentNumberLabel.text = resultDictionary.value(forKey: "studentID") as? String;
-        cell.accountTypeLabel.text = resultDictionary.value(forKey: "accountType") as? String;
+        let account = self.accounts[indexPath.row]
+
+        cell.nameLabel.text = account.firstName;
+        cell.accountTypeLabel.text = account.accountType.rawValue;
+        cell.studentNumberLabel.text = account.studentNumber;
         
         return cell;
     }
@@ -67,15 +72,20 @@ extension AccountsViewController: UITableViewDataSource {
 
 extension AccountsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("");
+        accountSwitchableDelegate?.userDidSwitch(to: accounts[indexPath.row]);
+        print("did select row");
+        if (accountSwitchableDelegate == nil) {
+            print("Account switchable delegate is nil");
+        }
+        self.dismiss(animated: true, completion: nil);
     }
     
 }
 
 extension AccountsViewController: GetAllAccountsDelegate {
-    func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: NSArray) {
+    func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: [Account]) {
         self.accounts = results;
-    
+       
         DispatchQueue.main.async(execute: { () -> Void in
             self.tableView.reloadData()
         })
@@ -83,8 +93,11 @@ extension AccountsViewController: GetAllAccountsDelegate {
 }
 
 class AccountsViewControllerCell: UITableViewCell {
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var accountTypeLabel: UILabel!
     @IBOutlet weak var studentNumberLabel: UILabel!
+}
+
+protocol AccountSwitchable {
+    func userDidSwitch(to account: Account);
 }

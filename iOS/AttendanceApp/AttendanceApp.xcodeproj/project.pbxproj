@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251C129F20056BBD00DF4DC2 /* BeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C129E20056BBD00DF4DC2 /* BeaconManager.swift */; };
 		254EAB891FFC908A00C37D1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254EAB881FFC908A00C37D1B /* AppDelegate.swift */; };
 		254EAB8B1FFC908A00C37D1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254EAB8A1FFC908A00C37D1B /* ViewController.swift */; };
 		254EAB8E1FFC908A00C37D1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254EAB8C1FFC908A00C37D1B /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		251C129E20056BBD00DF4DC2 /* BeaconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconManager.swift; sourceTree = "<group>"; };
 		254EAB851FFC908A00C37D1B /* AttendanceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AttendanceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		254EAB881FFC908A00C37D1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		254EAB8A1FFC908A00C37D1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,8 +117,9 @@
 				254EAB8A1FFC908A00C37D1B /* ViewController.swift */,
 				2595FFB22000B69E005A10FD /* ProfileViewController.swift */,
 				2595FFB82000EAE9005A10FD /* AccountsViewController.swift */,
-				2595FFBA20015373005A10FD /* Account.swift */,
+				251C129E20056BBD00DF4DC2 /* BeaconManager.swift */,
 				2595FFB42000BBF5005A10FD /* RequestHandler.swift */,
+				2595FFBA20015373005A10FD /* Account.swift */,
 				2595FFB62000BD9A005A10FD /* Config.swift */,
 				254EABB61FFC92C600C37D1B /* Object.swift */,
 				254EABB81FFC973300C37D1B /* Defaults.swift */,
@@ -283,6 +286,7 @@
 				254EAB8B1FFC908A00C37D1B /* ViewController.swift in Sources */,
 				254EABB91FFC973300C37D1B /* Defaults.swift in Sources */,
 				2595FFB52000BBF5005A10FD /* RequestHandler.swift in Sources */,
+				251C129F20056BBD00DF4DC2 /* BeaconManager.swift in Sources */,
 				2595FFBB20015373005A10FD /* Account.swift in Sources */,
 				2595FFB72000BD9A005A10FD /* Config.swift in Sources */,
 				2595FFB32000B69E005A10FD /* ProfileViewController.swift in Sources */,

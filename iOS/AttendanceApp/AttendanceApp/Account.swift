@@ -9,6 +9,7 @@
 import Foundation
 
 struct Account {
+    let id: String;
     let firstName: String;
     let lastName: String;
     let studentNumber: String;
@@ -18,15 +19,5 @@ struct Account {
 enum AccountTypes: String {
     case student = "student";
     case teacher = "teacher";
+    case unknown = "unknown";
 }
-
-extension Data {
-    func dataToFoundation() throws -> Any {
-        do {
-            let foundationObject = try JSONSerialization.jsonObject(with: self, options: []);
-            return foundationObject;
-        } 
-        
-    }
-}
-

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 
 class ViewController: UIViewController {
     
@@ -15,107 +14,62 @@ class ViewController: UIViewController {
     @IBOutlet weak var uuidLabel: UILabel!
     @IBOutlet weak var majorValueLabel: UILabel!
     @IBOutlet weak var minorValueLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
+    var currentAccount: Account?
     
-    
-    var monitoring = [Object]() // Objects to be monitored
-    
-    var locationManager: CLLocationManager = CLLocationManager()
+    let beaconManager: BeaconManager = BeaconManager()
+
+    // MARK: - View
     
     override func viewDidLoad() {
-
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
         
-        addItemsToBeMonitored()
-        
-        startMonitoringLocation()
+        self.beaconManager.beaconManagerDelegate = self;
     }
     
-    func startMonitoringLocation() {
-        //TODO: Need to iterate over the monitoring array
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let beaconRegion = monitoring[0].asCLBeaconRegion()
-        locationManager.startMonitoring(for: beaconRegion)
-        locationManager.requestState(for: beaconRegion)
-        //locationManager.startRangingBeacons(in: beaconRegion)
-        
-        
-        //print("Monitoring started \n UUID: \(beaconRegion.proximityUUID.uuidString)\n Major: \(beaconRegion.major?.intValue) Minor: \(beaconRegion.minor?.intValue)")
-    }
-    
-    func addItemsToBeMonitored() {
-        // For now, this will just monitor the default (iPad Pro)
-        let object: Object = Object(uuid: Defaults.uuid,
-                                    majorValue: Defaults.majorValue,
-                                    minorValue: Defaults.minorValue,
-                                    name: Defaults.name)
-        monitoring.append(object)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-}
-
-extension ViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        if (state == .inside && region is CLBeaconRegion) {
-            // Device is already inside of a beacon region. Begin ranging.
-            for item in monitoring {
-                locationManager.startRangingBeacons(in: item.asCLBeaconRegion())
-            }
-            
+        if segue.identifier == "accountsSegue"
+        {
+            let destinationVC = segue.destination as! AccountsViewController
+            destinationVC.accountSwitchableDelegate = self;
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Entered Region")
-        //TODO: Implement this
+    func refreshAccountView(_ account: Account) {
+        
+        self.currentAccount = account;
+        let firstName = self.currentAccount!.firstName;
+        let lastName = self.currentAccount!.lastName;
+        self.nameLabel.text = "\(firstName) \(lastName)";
     }
     
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        for row in 0..<monitoring.count {
-            for beacon in beacons {
-                if monitoring[row] == beacon {
-                    print("Beacon matches \n Distance: \(beacon.proximityString)")
-                    
-                    descriptionLabel.text = "Beacon found at distance: \(beacon.proximityString)"
-                    uuidLabel.text = beacon.proximityUUID.uuidString
-                    majorValueLabel.text = "Major: \(beacon.major)"
-                    minorValueLabel.text = "Minor: \(beacon.minor)"
-                }
-            }
+    func refreshBeaconView(_ beacon: Object) {
+        
+        uuidLabel.text = beacon.uuid.uuidString
+        majorValueLabel.text = "Major: \(beacon.majorValue)"
+        minorValueLabel.text = "Minor: \(beacon.minorValue)"
+        
+        if (beacon.proximity != nil) {
+            descriptionLabel.text = "Proximity: \(beacon.proximity!)"
         }
     }
+
+}
+
+// MARK: - Extensions
+
+extension ViewController: AccountSwitchable {
     
-    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print("Monitoring failed: \(error.localizedDescription)")
+    func userDidSwitch(to account: Account) {
+        print("user did switch to")
+        refreshAccountView(account);
     }
 }
 
-extension ViewController: DataPassable {
-    func pass(data: Any) {
-        print("")
+extension ViewController: BeaconManagerProtocol {
+    func beaconWasMatched(_ beacon: Object) {
+        print("match");
+        refreshBeaconView(beacon);
     }
 }
-
-extension CLBeacon {
-    var proximityString: String {
-        switch self.proximity {
-        case .unknown: return "unknown"
-        case .immediate: return "immediate"
-        case .near: return "near"
-        case .far: return "far"
-        }
-    }
-}
-
-protocol DataPassable {
-    func pass(data: Any);
-}
-

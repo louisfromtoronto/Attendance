@@ -42,11 +42,11 @@ class RequestHandler {
     // Retrieves all accounts from the Database, and returns them as an
     // array of dictionaries. You must set a value for getAllAccountsDelegate.
     func getAllAccounts() {
-        
+    
         var request = URLRequest(url: URL(string: (urls.studentsPath + "findAll/"))!);
         request.httpMethod = "GET";
         
-        var resultArray: NSArray = [];
+        var resultArray: [NSDictionary] = [];
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
@@ -58,11 +58,36 @@ class RequestHandler {
             // print("Results string: \n" + resultsString!);
             
             do {
-                resultArray  = try JSONSerialization.jsonObject(with: data!, options: []) as! NSArray;
-                print(String(resultArray.count) + " items in resultArray");
+                resultArray  = try JSONSerialization.jsonObject(with: data!, options: []) as! [NSDictionary];
+                var accountsArray: [Account] = resultArray.map({ (account: Any!) -> Account in
+                    let accountDictionary = account as! NSDictionary;
+                    let id = accountDictionary.value(forKey: "_id") as! String
+                    let firstName = accountDictionary.value(forKey: "firstName") as? String;
+                    let lastName = accountDictionary.value(forKey: "lastName") as? String;
+                    let studentNumber = accountDictionary.value(forKey: "studentID") as? String;
+                    var accountType: AccountTypes {
+                        let accountTypeString = accountDictionary.value(forKey: "accountType") as? String;
+                        var accountType: AccountTypes;
+                        if (accountTypeString == "student") {
+                            accountType =  .student
+                        } else if (accountTypeString == "student") {
+                            accountType = .teacher
+                        } else {
+                            accountType = .unknown
+                            print("Unknown account type");
+                        }
+                        return accountType;
+                    }
+                    let account: Account = Account(id: id,
+                                                   firstName: firstName!,
+                                                   lastName: lastName!,
+                                                   studentNumber: studentNumber!,
+                                                   accountType: accountType)
+                    return account
+                })
                 
                 if (self.getAllAccountsDelegate != nil) {
-                    self.getAllAccountsDelegate?.requestHandlerDidGetAllAccounts(sender: self, results: resultArray)
+                    self.getAllAccountsDelegate?.requestHandlerDidGetAllAccounts(sender: self, results: accountsArray)
                 } else {
                     print("You must implement the delegate protocol and set a value for RequestHandler.getAllAcountsDelegate");
                 }
@@ -75,5 +100,7 @@ class RequestHandler {
 }
 
 protocol GetAllAccountsDelegate: class {
-    func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: NSArray);
+    func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: [Account]);
 }
+
+

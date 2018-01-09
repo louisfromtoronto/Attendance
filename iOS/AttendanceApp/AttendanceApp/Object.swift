@@ -11,15 +11,17 @@ import CoreLocation
 
 class Object {
     let uuid: UUID
-    let majorValue: CLBeaconMajorValue
-    let minorValue: CLBeaconMinorValue
+    let majorValue: CLBeaconMajorValue // UInt16 TYPEALIAS
+    let minorValue: CLBeaconMinorValue // UInt16 TYPEALIAS
     let name: String
+    var proximity: String?
     
-    init(uuid: UUID, majorValue: Int, minorValue: Int, name: String){
+    init(uuid: UUID, majorValue: CLBeaconMajorValue, minorValue: CLBeaconMinorValue, name: String){
         self.uuid = uuid
         self.majorValue = CLBeaconMajorValue(majorValue)
         self.minorValue = CLBeaconMinorValue(minorValue)
         self.name = name
+        self.proximity = nil
     }
     
     func asCLBeaconRegion() -> CLBeaconRegion {
