@@ -32,7 +32,6 @@ class AccountsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -83,6 +82,23 @@ extension AccountsViewController: UITableViewDelegate {
 }
 
 extension AccountsViewController: GetAllAccountsDelegate {
+    
+    func networkCommunicationError(errorString: String) {
+        
+        print("Presenting error")
+        
+        let errorString = "There was an issue communicating with the server. "
+            + "Check that you've set up the project as outlined in readme.md"
+        
+        let alert = UIAlertController(title: "Network communication error",
+                                      message: errorString,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .cancel,
+                                      handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func requestHandlerDidGetAllAccounts(sender: RequestHandler, results: [Account]) {
         self.accounts = results;
        
