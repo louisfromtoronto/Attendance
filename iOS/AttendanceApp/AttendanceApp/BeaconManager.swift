@@ -47,13 +47,11 @@ class BeaconManager: NSObject {
         locationManager.startMonitoring(for: beaconRegion)
         locationManager.requestState(for: beaconRegion)
         //locationManager.startRangingBeacons(in: beaconRegion)
-        
-        
-        //print("Monitoring started \n UUID: \(beaconRegion.proximityUUID.uuidString)\n Major: \(beaconRegion.major?.intValue) Minor: \(beaconRegion.minor?.intValue)")
     }
 }
 
 extension BeaconManager: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
         print("Entered Region")
@@ -78,18 +76,13 @@ extension BeaconManager: CLLocationManagerDelegate {
                 if monitoring[row] == beacon {
                     print("Beacon matches \n Distance: \(beacon.proximityString)");
                     
-                    var matched = Object(uuid: beacon.proximityUUID,
+                    let matched = Object(uuid: beacon.proximityUUID,
                                             majorValue: CLBeaconMajorValue(beacon.major),
                                             minorValue: CLBeaconMinorValue(beacon.minor),
                                             name: Defaults.name)
                     matched.proximity = beacon.proximityString;
                     
                     beaconManagerDelegate?.refreshBeaconView(matched);
-                    
-//                    descriptionLabel.text = "Beacon found at distance: \(beacon.proximityString)"
-//                    uuidLabel.text = beacon.proximityUUID.uuidString
-//                    majorValueLabel.text = "Major: \(beacon.major)"
-//                    minorValueLabel.text = "Minor: \(beacon.minor)"
                 }
             }
         }

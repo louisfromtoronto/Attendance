@@ -19,10 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VA-CL-1vM">
-                                <rect key="frame" x="112" y="587" width="150" height="30"/>
-                                <state key="normal" title="View Enrolled Classes"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No beacon found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbi-x2-C1B">
                                 <rect key="frame" x="121.5" y="323" width="132" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -47,42 +43,49 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZD-oH-QBI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZD-oH-QBI">
                                 <rect key="frame" x="16" y="20" width="102" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Accounts"/>
                                 <connections>
                                     <segue destination="rgo-LT-KJU" kind="presentation" identifier="accountsSegue" id="H8k-tO-ZoC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hix-lP-Rvv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hix-lP-Rvv">
                                 <rect key="frame" x="237" y="20" width="128" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Create New Profile"/>
                                 <connections>
                                     <segue destination="w3f-l3-6Ub" kind="presentation" id="cjx-UU-WyQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKO-xn-QYe">
-                                <rect key="frame" x="16" y="170" width="343" height="39"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKO-xn-QYe">
+                                <rect key="frame" x="16" y="75" width="343" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VA-CL-1vM">
+                                <rect key="frame" x="112" y="617" width="150" height="30"/>
+                                <state key="normal" title="View Enrolled Classes"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1VA-CL-1vM" secondAttribute="bottom" constant="50" id="03j-3u-hAL"/>
+                            <constraint firstItem="QZD-oH-QBI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="20g-0W-duN"/>
+                            <constraint firstItem="hix-lP-Rvv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3cT-JU-ofB"/>
                             <constraint firstItem="LX4-Fs-4Ab" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FqK-1J-s0D"/>
                             <constraint firstItem="r9r-s8-wgZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L6K-Sw-O31"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hix-lP-Rvv" secondAttribute="trailing" constant="10" id="MrY-oJ-oTd"/>
                             <constraint firstItem="bpZ-X5-3fs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P3g-sm-aa4"/>
                             <constraint firstItem="LKO-xn-QYe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fNc-dQ-XHa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1VA-CL-1vM" secondAttribute="bottom" constant="20" id="g33-lV-eLR"/>
                             <constraint firstItem="Pbi-x2-C1B" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gtk-Hd-lHm"/>
                             <constraint firstItem="1VA-CL-1vM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="haV-KC-PEw"/>
+                            <constraint firstItem="LKO-xn-QYe" firstAttribute="top" secondItem="QZD-oH-QBI" secondAttribute="bottom" constant="25" id="kj1-aB-kNz"/>
                             <constraint firstItem="LX4-Fs-4Ab" firstAttribute="top" secondItem="Pbi-x2-C1B" secondAttribute="bottom" constant="20" id="kzC-oI-Bc2"/>
                             <constraint firstItem="r9r-s8-wgZ" firstAttribute="top" secondItem="bpZ-X5-3fs" secondAttribute="bottom" constant="20" id="orQ-fA-Gbu"/>
                             <constraint firstItem="Pbi-x2-C1B" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tZQ-Xo-C87"/>
                             <constraint firstItem="bpZ-X5-3fs" firstAttribute="top" secondItem="LX4-Fs-4Ab" secondAttribute="bottom" constant="20" id="u9e-KY-kS2"/>
+                            <constraint firstItem="QZD-oH-QBI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wny-uw-OaU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LKO-xn-QYe" secondAttribute="trailing" constant="16" id="ws5-qx-EuA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -258,7 +261,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="hny-SJ-Pvv">
+                                    <navigationItem title="All Accounts" largeTitleDisplayMode="always" id="hny-SJ-Pvv">
                                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="inw-1M-3Cg">
                                             <connections>
                                                 <action selector="cancelButton:" destination="rgo-LT-KJU" id="6oH-A9-tJN"/>
