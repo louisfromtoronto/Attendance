@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    let requestHander = RequestHandler()
+    
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -60,7 +62,7 @@ class ProfileViewController: UIViewController {
                 let pickerViewSelectedIndex = self.accountTypePicker.selectedRow(inComponent: 0);
                 let accountTypeString = self.pickerViewOptions[pickerViewSelectedIndex].lowercased();
                 
-                RequestHandler.createStudent(withFirstName: firstNameString!,
+                self.requestHander.createStudent(withFirstName: firstNameString!,
                                                   lastName: lastNameString!,
                                                  studentID: studentNumberString!,
                                                accountType: accountTypeString);

@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     // MARK: - View
     
     override func viewDidLoad() {
+        let requestHandler = RequestHandler()
+        requestHandler.getAllAccounts()
         
         self.beaconManager.beaconManagerDelegate = self;
     }
