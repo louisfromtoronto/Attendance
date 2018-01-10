@@ -33,7 +33,8 @@ class ViewController: UIViewController {
         
         if segue.identifier == "accountsSegue"
         {
-            let destinationVC = segue.destination as! AccountsViewController
+            let destinationNavController = segue.destination as! UINavigationController
+            let destinationVC = destinationNavController.topViewController as! AccountsViewController
             destinationVC.accountSwitchableDelegate = self;
         }
     }
